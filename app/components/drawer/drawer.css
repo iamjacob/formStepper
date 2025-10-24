@@ -1,0 +1,358 @@
+*{
+	 /* outline:1px solid red;  */
+}
+
+
+.drawer svg {
+	height: 24px;
+	margin-bottom: 10px;
+}
+
+.progressHolder {
+	display: flex;
+	width: 100%;
+	overflow-x: auto;
+	overflow-y: hidden;
+	justify-content: space-between;
+    gap: 22px;
+    align-items: end;
+	white-space: nowrap;
+	transition: transform 200ms ease; 
+}
+
+.steps ul{
+	height:140px;
+	width:100%;
+}
+
+.steps ul li{
+	position: relative;
+	list-style:circle;
+}
+
+.steps ul li.done{
+	position: relative;
+	list-style:disc;
+}
+
+.progression{
+	background: red;
+    height: 50px;
+    width: 2px;
+}
+
+.glass {
+	z-index: 1000;
+	background: rgba(255, 255, 255, 0.2);
+	-webkit-backdrop-filter: blur(1px);
+	backdrop-filter: blur(1px);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/*
+Add form!
+*/
+
+/* Inputs inside the add form */
+.add-form {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	height: calc(100% - 30px);
+}
+
+.step-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-height: 120px;
+}
+
+.step {
+  position: absolute;
+  width: 100%;
+  animation-duration: 300ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes slideOutLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* Scoped fieldset styles for add form */
+.add-form fieldset {
+	border-radius: 8px;
+	border: 2px solid #ef4444;
+	/* explicit border so border-color shows despite resets */
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	font-family: Sans-serif;
+	background: #ffffff10;
+
+}
+
+legend {
+	font-size: .8rem;
+	font-weight: 500;
+}
+
+
+.add-form input {
+	all: unset;
+	flex: 1;
+	font-size: 1rem;
+	padding: 6px 8px;
+}
+
+#upload {
+	border: 2px dashed red;
+}
+
+#fileInputFront {
+	display: none;
+}
+
+.add-form .chooseFile {
+	padding: 4px 8px;
+	width: fit-content;
+	border-radius: 4px;
+	border: 1px dashed #777;
+	white-space: no-wrap;
+	cursor: pointer;
+	margin-left: 4px;
+	font-size: 14px;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+input[type="file"] {
+	display: none;
+}
+
+/*
+Footer for steps in form
+
+*/
+footer {
+	width: 100%;
+	display: flex;
+	;
+	justify-content: space-between;
+}
+
+.btn {
+	padding: 7px 14px;
+	border: none;
+	background: none;
+	border-radius: 8px;
+	font-family: inherit;
+	font-size: 13px;
+	text-transform: uppercase;
+	letter-spacing: 1.5px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	font-weight: 400;
+}
+
+.btn-secondary {
+	color: #999;
+	border: 1px solid #e0e0e0;
+	background: white;
+}
+
+.btn-secondary:hover {
+	color: #2a2a2a;
+	border-color: #2a2a2a;
+}
+
+.btn-secondary:disabled {
+	opacity: 0.3;
+	cursor: not-allowed;
+}
+
+.btn-primary {
+	background: #2a2a2a;
+	color: #f5f5f0;
+}
+
+.btn-primary:hover {
+	background: #1a1a1a;
+}
+
+/* Settings for scan, in settings*/
+
+.input-method {
+	display: flex;
+	gap: 4px;
+	background: white;
+	border: 1px solid #e0e0e0;
+	border-radius: 6px;
+	padding: 4px;
+	width: fit-content;
+}
+
+.method-btn {
+	padding: 4px 8px;
+	border: none;
+	background: none;
+	cursor: pointer;
+	font-size: 10px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	transition: all 0.2s;
+	color: #999;
+	border-radius: 4px;
+}
+
+.method-btn.active {
+	background: #2a2a2a;
+	color: white;
+}
+
+
+/* ensure strip is sized relative to container and each step can't exceed container */
+.steps-strip { 
+  width: 100%;
+  display: flex; /* keep, but ensure width is correct */
+  box-sizing: border-box;
+}
+
+/* each step should be exactly container width and not grow beyond it */
+.step-item {
+  flex: 0 0 100%;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  min-width: 0; /* IMPORTANT: allow flex children (inputs) to shrink */
+}
+
+/* inputs inside flex containers need min-width:0 and box-sizing so they don't overflow */
+.add-form input {
+  box-sizing: border-box;
+  min-width: 0;   /* IMPORTANT to prevent overflow inside flex */
+  max-width: 100%;
+  display: block;
+}
+
+/* fieldsets should not force extra width */
+.add-form fieldset {
+  width: 100%;
+  min-width: 0;
+}
+
+
+
+
+
+.steps-strip { display:flex; box-sizing:border-box; min-width:0; width:100%; }
+.step-item { flex: 0 0 100%; box-sizing: border-box; min-width: 0; width:100%; }
+.add-form input { box-sizing: border-box; min-width: 0; width: 100%; padding: 6px 8px; display:block; }
+
+/* add near your .step-item / fieldset rules */
+.step-item {
+  /* existing rules... */
+  --accent: #ef4444; /* fallback */
+}
+
+.step-item fieldset {
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  padding: 10px;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+}
+
+/* optional: subtle glow when active step */
+.step-item[aria-hidden="false"] fieldset {
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06), 0 0 0 4px var(--accent, #ef4444)20;
+}
+
+.steps{
+	display:flex;
+}
+
+.steps-text li{
+	padding-left: 10px;
+}
+
+.steps-text li::marker{
+}
+
+/* Customize the scrollbar width */
+::-webkit-scrollbar {
+ height:1px;
+ width: 2px;
+ background: red;
+}
+/* Style the track (background) */
+::-webkit-scrollbar-track {
+ background: none;
+}
+/* Style the thumb (draggable handle) */
+::-webkit-scrollbar-thumb {
+ background: #888;
+ border-radius: 8px;
+ height: 2px;
+ background: rgba(255, 0, 0, 0.3); /* subtle white on dark bg */
+}
+/* Change thumb color on hover */
+::-webkit-scrollbar-thumb:hover {
+ background: #555;
+}
+
+/* 
+footer{
+	display:none;
+} */
+
+.progression{
+	display: none;
+}
+
+/*
+
+*/
+
+.optional-badge {
+      display: inline-block;
+      font-size: 10px;
+      padding: 2px 6px;
+      background: #f0f0f0;
+      border-radius: 4px;
+      margin-left: 8px;
+      color: #999;
+    }
