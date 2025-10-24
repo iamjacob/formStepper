@@ -16,7 +16,7 @@ export default function AddBook() {
   const [inputMethod, setInputMethod] = useState("manual");
 
   const containerRef = useRef(null);
-  const widthRef = useRef(window.innerWidth);
+  const widthRef = useRef();
   const pointerDownRef = useRef(false);
   const startXRef = useRef(0);
   const rafRef = useRef(null);
